@@ -6,8 +6,12 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 export default function Header(props) {
   return (
-    <div className='bg-dark text-white text-center p-2'>
-        <h3 className='display-8'>{props.title}</h3>
-    </div>
+    <header>
+      <nav className='navbar navbar-dark bg-dark '>
+        <div className='container-fluid justify-content-center'>
+        <a className='navbar-brand' href='#'>{props.title}</a>
+        </div>
+      </nav>
+    </header>
   )
 }

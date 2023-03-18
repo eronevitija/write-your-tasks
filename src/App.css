@@ -4,43 +4,14 @@
 body{
     background-color: #AD8E70;
 }
-.toDoListContainer{
-    display: 'flex';
-    justify-content: start;
-    flex-direction: column;
-    width: 50%;
-    height: 100%;
-    text-align: center;
-    background-color: #F4EAD5;
-    margin: 5% auto;
-    border-radius: 10px;
-    padding-bottom: 30%;
-}
-form{
-    margin-bottom: 35px;
-}
+
 .taskList{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 4px auto;
-    /* color: white; */
-    background-color: #AD8E70;
-    padding: 16px;
+    margin: 20px 0;
+    padding: 15px;
     border-radius: 5px;
-    width: 90%;
+    background-color: aliceblue;
 }
-.header{
-    background-color:#393E46;
-    color: white;
-    text-align: center;
-    padding:15;
-    font-size: 20px;
-}
-.icons i{
-    /* display: flex;
-    justify-content: center; */
-    /* align-items: flex-end; */
-    margin: 20;
-    
-}
+

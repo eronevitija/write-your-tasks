@@ -7,10 +7,8 @@ import './App.css'
 function App() {
   return (
     <div >
-      <Header title='ToDo'/>
-      <div className='toDoListContainer'>
+      <Header title='ToDoList'/>
       <ToDoList />
-      </div>
     </div>
   );
 }
