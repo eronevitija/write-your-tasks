@@ -1,0 +1,39 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .addTask{
+        margin-top: 5%;
+        width: 40%;
+    }
+
+    
+     .taskContainer{
+        margin-top: 5%;
+        text-align: left;
+        font-size: 20;
+       
+        .noTask{
+            color: #999;
+            border: 1px solid #999;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icons{
+            display: flex;
+            float: right;
+            cursor: pointer;
+            color: red;
+        }
+       
+    }
+}
+
+
+

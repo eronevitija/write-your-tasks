@@ -1,74 +1,79 @@
 import React, { useState } from 'react'
-import '../App.css'
 import '../../node_modules/font-awesome/css/font-awesome.min.css'
-import  Button  from 'react-bootstrap/Button'
-// import {Card } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {Card} from 'react-bootstrap'
 import AddToDo from './AddToDo';
+import './css/ToDoList.scss'
+import EditToDo from './EditToDo';
 
 
-export default function ToDoList({add}) {
+export default function ToDoList() {
 
     const [taskList,setTaskList] = useState([]);
     const [value, setValue] = useState('');
-    const [editTask, setEditTask] = useState(false);
-    const [completedTask,setCompletedTask] = useState(false);
+    const [edit, isEditing] = useState(false);
+   
 
-
-const handleSubmit = (e) => {
-  e.preventDefault();
-}
-
-const addTask = (task) => {
-    if(value.length === 0){
-      alert('Please write your task!')
-      return;
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      addTask(value);
+      setValue('');  
     }
-    else{
-    const newTask = {
-      id: Math.random(),
-      task: task,
+
+    const addTask = (task) => {
+        if(value.length === 0){
+          alert('Please write your task!')
+          return;
+        }
+        else{
+        const newTask = {
+          id: Math.random(),
+          task: task,
+        };
+        //add the todo to the list
+        setTaskList([...taskList, newTask])
+        setValue('')
+      }
     };
-    //add the todo to the list
-    setTaskList([...taskList, newTask])
-    setValue('')
-  }
-};
 
-const deleteTask = (id) => {
-  const newTask = taskList.filter((task)=> task.id !== id);
-  setTaskList(newTask)
-}
+    const deleteTask = (id) => {
+      const newTask = taskList.filter((task)=> task.id !== id);
+      setTaskList(newTask)
+    }
 
-const updateTask = (id) => {
-  setValue([taskList[id]])
-  taskList.slice(id,1)
-}
+    // const editTask = (id) => {
+    //     const filter = taskList.filter(task=>task.id !== id);
+    //     const selectedItem = taskList.find(task=>task.id === id);
 
+    // }
 
+    // const editToDo =(task,id) => {
+    //     setTaskList(task.map(todo => todo.id === id ? {...todo, task, isEditing : !todo.isEditing} : todo))
+
+    // }
 
   return (
-    <div className='d-flex justify-content-center mt-5'>
-      <div style={{width:'40%', height:'100%'}}>
-        <AddToDo style={{marginBottom:32}} addTask={addTask} value={value} setValue={setValue} handleSubmit={handleSubmit}/>
-         <div>
-         {
-            taskList.map((task,index)=>(
-               <div className='col-md-10'>
-                    <li className='taskList' key={index.toString()}>
-                      {/* <input type={'checkbox'} checked={task.status} onChange={()=>checkBox(task.id)} /> */}
-                      {task.task}
-                     <div className='float-right'>
-                    <i className='fa fa-edit m-2' onClick={()=>updateTask(index)} style={{cursor:'pointer'}}></i>
-                     <i className='fa fa-trash' onClick={()=>deleteTask(task.id)} style={{cursor:'pointer'}}></i>
-                     </div>
-                    </li>
-              </div>
-            ))
-          }
-         </div>
+      <div className='container'>
+        <div className='addTask'>
+            <AddToDo value={value} setValue={setValue} addTask={addTask} handleSubmit={handleSubmit}/>
+              {
+                  taskList.map((task,index)=>(
+                      <div className='taskContainer' key={index.toString()}>
+                        <ul className='list-group'>
+                          <li className='list-group-item'>
+                          {/* <span className='noTask'>{index+1}</span> */}
+                          {/* <input value={task.task}/> */}
+                          {task.task}
+                          <div className='icons'>
+                          <i className='fa fa-edit m-1'></i>
+                          <i className='fa fa-trash m-1' onClick={()=>deleteTask(task.id)}></i>
+                          </div>
+                          </li>
+                        </ul>
+                      </div>
+                  ))
+              }
         </div>
-    </div>
+      </div> 
   )
 }
+ 

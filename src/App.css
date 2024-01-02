@@ -4,14 +4,50 @@
 body{
     background-color: #AD8E70;
 }
+    /* .taskList{
+        display: flex;
+        flex-direction: row;
+        /* justify-content: space-between;
+        align-items: center;
+        margin-top: 5px;
+        padding: 20px;
+        border-radius: 5px;
+        border: 2px solid silver;
+        margin-left: 0;
+        text-align: left;
+    } */
 
-.taskList{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 20px 0;
-    padding: 15px;
-    border-radius: 5px;
-    background-color: aliceblue;
+
+.dark{
+    background-color: black;
+    color: white;
+}
+.light{
+    color: black;
 }
 
+.login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    margin:auto;
+    width: 350px;
+    box-shadow: 0px 0px 14px #867070;
+    margin-top: 5%;
+    
+}
+
+.register{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* align-items: center; */
+        padding: 1.5rem;
+        margin:auto;
+        width: 300px;
+        box-shadow: 0px 0px 14px #867070;
+        margin-top: 5%;
+        
+}
