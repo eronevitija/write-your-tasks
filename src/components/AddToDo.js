@@ -1,6 +1,6 @@
 import React from 'react'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import './css/AddToDo.scss'
+import '../sass/AddToDo.scss'
 
 
 export default function AddToDo({value,setValue,addTask,handleSubmit}) {
@@ -8,7 +8,7 @@ export default function AddToDo({value,setValue,addTask,handleSubmit}) {
   return (
       <form onSubmit={handleSubmit} className='form'>
         <div className="input-group">
-           <input 
+          <input 
            type="text" 
            placeholder='Write your task'
            className="form-control" 
@@ -22,3 +22,4 @@ export default function AddToDo({value,setValue,addTask,handleSubmit}) {
       </form>
   )
 }
+
