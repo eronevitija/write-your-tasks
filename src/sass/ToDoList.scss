@@ -8,7 +8,17 @@
         width: 40%;
     }
 
-    
+    .input{
+        
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin: 15px auto;
+            padding: 8px;
+            border: 1px solid #999;
+    }
+
+   
      .taskContainer{
         margin-top: 5%;
         text-align: left;

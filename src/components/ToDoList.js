@@ -9,9 +9,10 @@ export default function ToDoList() {
 
     const [taskList,setTaskList] = useState([]);
     const [value, setValue] = useState('');
-    const [edit, setEdit] = useState(0);
-   
+    const [editTask, setEditTask] = useState(null);
+    const [newTxt,setNewTxt] = useState('');
 
+   
     const handleSubmit = (e) => {
       e.preventDefault();
       addTask(value);
@@ -39,32 +40,60 @@ export default function ToDoList() {
       setTaskList(newTask)
     }
 
-    const editTask = (id) => {
-     const editedTask = taskList.find((i) => i.id === id);
-     setValue(editedTask.value)
+    const handleEdit = (todo) => {
+     setEditTask(todo.id);
+     setNewTxt(todo.task)
     }
 
    
+   const handleSave = () => {
+    setTaskList(taskList.map(task=>
+      task.id === editTask ? {...task, task:newTxt} : task
+    ));
+    setEditTask(null);
+    setNewTxt("");
+   }
+   
+    const cancelEditing = () => {
+      setEditTask(null);
+      setNewTxt('');
+    }
 
   return (
       <div className='container'>
         <div className='addTask'>
-            <AddToDo value={value} setValue={setValue} addTask={addTask} handleSubmit={handleSubmit}/>
-              {
-                  taskList.map((task,index)=>(
-                        <div className='taskContainer' key={index.toString()}>
-                        <ul className='list-group'>
-                          <li className='list-group-item'>
-                          {task.task}
-                          <div className='icons'>
-                          <i className='fa fa-edit m-1' onClick={()=>editTask(task.id)}></i>
-                          <i className='fa fa-trash m-1' onClick={()=>deleteTask(task.id)}></i>
-                          </div>
+         <AddToDo value={value} setValue={setValue} addTask={addTask} handleSubmit={handleSubmit}/>
+          {
+             taskList.map((task) => (
+                  <div className='taskContainer' key={task.id}>
+                    <ul className='list-group'>
+                      <li className='list-group-item'>
+                        <span>{task.task}</span>
+                         {
+                           editTask === task.id ? (
+                             <div>
+                               <input 
+                                type="text"
+                                value={newTxt}
+                                onChange={e => setNewTxt(e.target.value)}
+                                className='input'
+                                />
+                               <span className='input-group-btn'>
+                               <button onClick={handleSave} className='btn btn-success m-2'>Save</button>
+                               <button onClick={cancelEditing} className='btn btn-danger'>Cancel</button>
+                               </span>
+                              </div>
+                            ) : (
+                              <div className='icons'>
+                              <i className='fa fa-edit m-1' onClick={()=>handleEdit(task)}></i>
+                              <i className='fa fa-trash m-1' onClick={()=>deleteTask(task.id)}></i>
+                              </div>
+                          )}
                           </li>
                         </ul>
                       </div>
-                  ))
-              }
+                  ))  
+          }
         </div>
       </div> 
   )
